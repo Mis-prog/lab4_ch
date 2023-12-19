@@ -1,3 +1,7 @@
-//
-// Created by akmur on 19.12.2023.
-//
+#include "task.h"
+
+using namespace task3;
+
+void task3::main_task3(){
+
+}
