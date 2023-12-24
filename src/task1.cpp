@@ -13,7 +13,7 @@ double task1::x1_foo_task1(double x) {
 }
 
 double task1::x2_foo_task2(double x) {
-    return acos(exp((x + 10) / 20.0) - 2);
+    return acos(exp((x / 20.0 + 0.5)) - 2);
 }
 
 double task1::x1_foo_task1_diff(double x) {
@@ -26,7 +26,7 @@ double task1::x2_foo_task2_diff(double x) {
 
 
 void task1::main_task1() {
-    vector<double> answer={-4.00424191074621,-2.11371014988160,1.77077248495832,4.80946952510987};
+    vector<double> answer = {-4.00424191074621, -2.11371014988160, 1.77077248495832, 4.80946952510987};
     int n_bim = 0, n_nem = 0, n_sem = 0, n_chm = 0, n_sim = 0;
     int N = 11;
     double h = (b - a) / N;
@@ -34,7 +34,7 @@ void task1::main_task1() {
     while (x_cur < b) {
         double x0 = x_cur;
         double x1 = x_cur + h;
-        cout << setprecision(2) <<"Корень в этом отрезке: [" << x0 << ", " << x1 << "]" << endl;
+        cout << setprecision(2) << "Корни в этом отрезке: [" << x0 << ", " << x1 << "]" << endl;
         BIM(x0, x1, n_bim);
         NEM(x0, x1, n_nem);
         SEM(x0, x1, n_sem);
@@ -42,8 +42,8 @@ void task1::main_task1() {
         x_cur += h;
     }
     cout << "Корни:\n";
-    for (auto i:answer){
-        cout  <<i << " ";
+    for (auto i: answer) {
+        cout << i << " ";
     }
     cout << endl;
 }
@@ -77,7 +77,7 @@ void task1::NEM(double a, double b, int &num_it) {
         x1 = x0 - foo_task1(x0) / foo_task1_diff(x0);
         num_it++;
     }
-    if (a<=x1 && x1<=b) {
+    if (a <= x1 && x1 <= b) {
         cout << "Метод Ньютона(касательных):" << endl;
         cout << "Корень: " << fixed << setprecision(9) << x1 << endl;
         cout << "Количество итераций: " << num_it << endl;
@@ -98,7 +98,7 @@ void task1::SEM(double a, double b, int &num_it) {
         x2 = x1 - foo_task1(x1) * (x1 - x0) / (foo_task1(x1) - foo_task1(x0));
         count_itr++;
     }
-    if (a<=x2 && x2<=b) {
+    if (a <= x2 && x2 <= b) {
         cout << "Метод секущих:" << endl;
         cout << "Корень: " << fixed << setprecision(9) << x2 << endl;
         cout << "Количество итераций: " << count_itr << endl;
@@ -116,7 +116,7 @@ void task1::CHM(double a, double b, int &num_it) {
         x1 = x0 - foo_task1(x0) * (x0 - b) / (foo_task1(x0) - foo_task1(b));
         num_it++;
     }
-    if (a<=x1 && x1<=b) {
+    if (a <= x1 && x1 <= b) {
         cout << "Метод хорд:" << endl;
         cout << "Корень: " << fixed << setprecision(9) << x1 << endl;
         cout << "Количество итераций: " << num_it << endl;
@@ -126,10 +126,10 @@ void task1::CHM(double a, double b, int &num_it) {
 
 
 //// Метод простых итераций
-//void task1::SIM(double a, int maxIter, int &n_num) {
+//void task1::SIM(double a, int &n_num) {
 //    double x0 = a;
 //    double x1 = x2_foo_task2(x0);
-//    while (abs(x1 - x0) > epsilon && n_num<maxIter) {
+//    while (abs(x1 - x0) > epsilon) {
 //        x0 = x1;
 //        x1 = x2_foo_task2(x0);
 //        n_num++;

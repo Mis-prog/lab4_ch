@@ -10,3 +10,4 @@ add_executable(Lab4
         src/task2.cpp
         src/task3.cpp
 )
+
